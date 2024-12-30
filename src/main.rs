@@ -30,7 +30,7 @@ async fn root() -> &'static str {
 }
 
 async fn api_test() -> &'static str {
-    "from api test"
+    "from api test :)"
 }
 
 #[tokio::main]
