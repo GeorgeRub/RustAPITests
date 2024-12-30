@@ -39,6 +39,8 @@ async fn main() {
 
     let app_state = AppStage { db_pool: pool };
     let app = Router::new().route("/", get(root)).with_state(app_state);
+
     let listener = TcpListener::bind("0.0.0.0:8000").await.unwrap();
+
     axum::serve(listener, app).await.unwrap();
 }
