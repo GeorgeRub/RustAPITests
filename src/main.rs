@@ -29,6 +29,10 @@ async fn root() -> &'static str {
     "API from RUST!!! :)"
 }
 
+async fn api_test() -> &'static str {
+    "from api test"
+}
+
 #[tokio::main]
 async fn main() {
     dotenv::dotenv().ok();
@@ -38,7 +42,10 @@ async fn main() {
         .expect("Database connection failed.");
 
     let app_state = AppStage { db_pool: pool };
-    let app = Router::new().route("/", get(root)).with_state(app_state);
+    let app = Router::new()
+        .route("/", get(root))
+        .route("/api", get(api_test))
+        .with_state(app_state);
 
     let listener = TcpListener::bind("0.0.0.0:8000").await.unwrap();
 
