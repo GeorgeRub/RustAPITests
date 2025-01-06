@@ -1,52 +1,15 @@
-use axum::http::{HeaderMap, StatusCode};
-use axum::response::{IntoResponse, Response};
-use axum::routing::get;
+mod models;
+mod rest_requests;
+
+use crate::models::AppStage;
+use crate::rest_requests::{api_test, create_item, delete_all_items, delete_item, get_item, get_items, root, update_item};
+use axum::response::IntoResponse;
+use axum::routing::{get, post};
 use axum::Router;
 use serde::{Deserialize, Serialize};
-use sqlx::{FromRow, PgPool};
+use sqlx::{PgPool};
 use std::env;
 use tokio::net::TcpListener;
-
-#[derive(Serialize, FromRow)]
-struct Item {
-    id: i32,
-    name: String,
-    description: String,
-}
-
-#[derive(Deserialize)]
-struct RequestItem {
-    name: String,
-    description: String,
-}
-
-#[derive(Clone)]
-struct AppStage {
-    db_pool: PgPool,
-}
-
-impl AppStage {}
-
-async fn root(headers: HeaderMap) -> Response {
-    (StatusCode::FORBIDDEN, "Access denied").into_response()
-}
-
-// #[derive(Deserialize, Debug)]
-// struct Headers {
-//     test: String,
-//     host: String,
-//     accept: String,
-// }
-
-
-async fn api_test(headers: HeaderMap) -> Response {
-    // let headers_json = serde_json::from_str(&headers.try_into().unwrap()).unwrap();
-    // println!("{:#?}", headers.get("test"));
-
-    let resp_text: String = format!("from api test :) ==>> test header is {:#?}", headers.get("test").unwrap());
-
-    (StatusCode::OK, resp_text).into_response()
-}
 
 #[tokio::main]
 async fn main() {
@@ -57,13 +20,25 @@ async fn main() {
         .await
         .expect("Database connection failed.");
 
-    let app_state = AppStage { db_pool: pool };
+    // let app_state = AppStage { db_pool: pool };
     let app = Router::new()
-        .route("/", get(root))
-        .route("/api", get(api_test))
-        .with_state(app_state);
+        .nest(
+            "/api/v1",
+            Router::new()
+                .route("/", get(root))
+                .route("/test", get(api_test))
+                .route(
+                    "/items",
+                    post(create_item).get(get_items).delete(delete_all_items),
+                )
+                .route(
+                    "/items/{id}",
+                    get(get_item).put(update_item).delete(delete_item),
+                ),
+        )
+        .with_state(AppStage { db_pool: pool });
 
     let listener = TcpListener::bind("0.0.0.0:8000").await.unwrap();
-
+    println!("Listening on port 8000");
     axum::serve(listener, app).await.unwrap();
 }
