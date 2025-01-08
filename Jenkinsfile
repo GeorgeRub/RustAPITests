@@ -21,7 +21,7 @@ pipeline {
                                             echo "Installing Rustup and Rust..."
                                             wget https://github.com/rust-lang/rust/archive/refs/tags/${RUST_PACAGE}
                                             tar -xvzf ${RUST_PACAGE}
-//                                             ls
+                                            ls
 //                                             ls ./${RUSTUP_HOME}
                                             export PATH="${RUSTUP_HOME}:$PATH"
                                         else
