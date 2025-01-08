@@ -15,7 +15,8 @@ pipeline {
                     sh '''
                                         if ! [ -x "$(command -v rustc)" ]; then
                                             echo "Installing Rustup and Rust..."
-                                            curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+                                            wget https://codeload.github.com/rust-lang/rust/tar.gz/refs/tags/1.83.0
+                                            ls
                                             export PATH="${WORKSPACE}/.cargo/bin:$PATH"
                                         else
                                             echo "Rust is already installed"
