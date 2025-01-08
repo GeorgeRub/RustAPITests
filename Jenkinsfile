@@ -8,6 +8,7 @@ pipeline {
 
         stage('Build') {
           steps {
+          sh "cargo version"
             sh "cargo build --release"
           }
         }
