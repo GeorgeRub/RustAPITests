@@ -28,6 +28,9 @@ pipeline {
                 checkout scm // Check out the code from the configured SCM (e.g., Git)
             }
         }
+        stage('showing of folder'){
+            sh 'ls'
+        }
         stage('Build') {
             steps {
                 sh 'cargo build --release' // Build the Rust application in release mode
