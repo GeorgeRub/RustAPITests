@@ -29,7 +29,9 @@ pipeline {
             }
         }
         stage('showing of folder'){
-            sh 'ls'
+            steps{
+                sh 'ls'
+            }
         }
         stage('Build') {
             steps {
