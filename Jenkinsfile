@@ -35,7 +35,10 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'cargo build --release' // Build the Rust application in release mode
+            script{
+                sh '$HOME/.cargo/bin/cargo build --release' // Build the Rust application in release mode
+            }
+
             }
         }
     }
