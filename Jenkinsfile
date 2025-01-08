@@ -19,7 +19,6 @@ pipeline {
                     else
                         echo "Rustup already installed"
                     fi
-                    rustup show
                     '''
                 }
             }
