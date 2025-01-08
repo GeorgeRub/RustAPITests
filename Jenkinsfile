@@ -18,7 +18,8 @@ pipeline {
                                         if ! [ -x "$(command -v rustc)" ]; then
                                             echo "Installing Rustup and Rust..."
                                             wget https://codeload.github.com/rust-lang/rust/tar.gz/refs/tags/${CARGO_VERSION}
-                                            ls ${HOME}/${CARGO_VERSION}
+                                            ls
+                                            ls ${CARGO_VERSION}
                                             export PATH="${HOME}/${CARGO_VERSION}/bin:$PATH"
                                         else
                                             echo "Rust is already installed"
