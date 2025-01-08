@@ -30,7 +30,7 @@ pipeline {
         }
         stage('showing of folder'){
             steps{
-                sh 'ls'
+                sh 'ls $HOME/.cargo/bin'
             }
         }
         stage('Build') {
