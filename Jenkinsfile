@@ -21,9 +21,9 @@ pipeline {
                                             echo "Installing Rustup and Rust..."
                                             wget https://github.com/rust-lang/rust/archive/refs/tags/${RUST_PACAGE}
                                             tar -xvzf ${RUST_PACAGE}
-                                            ls
-                                            ls ./${RUSTUP_HOME}
-                                            export PATH="${HOME}/${CARGO_VERSION}/bin:$PATH"
+//                                             ls
+//                                             ls ./${RUSTUP_HOME}
+                                            export PATH="${RUSTUP_HOME}:$PATH"
                                         else
                                             echo "Rust is already installed"
                                         fi
