@@ -27,8 +27,8 @@ pipeline {
                                         else
                                             echo "Rust is already installed"
                                         fi
-                                        rustc --version
-                                        cargo --version
+                                        ${RUSTUP_HOME}/rustc --version
+                                        ${RUSTUP_HOME}/cargo --version
                                         '''
                 }
             }
