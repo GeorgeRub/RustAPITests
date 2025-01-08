@@ -12,6 +12,5 @@ pipeline {
             sh "cargo build --release"
           }
         }
-
       }
 }
