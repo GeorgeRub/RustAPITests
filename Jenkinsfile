@@ -28,11 +28,11 @@ pipeline {
                 checkout scm // Check out the code from the configured SCM (e.g., Git)
             }
         }
-        stage('showing of folder'){
-            steps{
-                sh 'ls $HOME/.cargo/bin'
-            }
-        }
+//         stage('showing of folder'){
+//             steps{
+//                 sh 'ls $HOME/.cargo/bin'
+//             }
+//         }
         stage('Build') {
             steps {
             script{
