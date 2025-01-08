@@ -3,6 +3,8 @@ pipeline {
         label 'agent1' // Specify the label of the agent to use
     }
     environment {
+    HOME = "${HOME}"
+    CARGO_VERSION = "1.83.0"
         CARGO_HOME = "${WORKSPACE}/.cargo" // Set up Cargo home
         RUSTUP_HOME = "${WORKSPACE}/.rustup" // Set up Rustup home
         PATH = "${CARGO_HOME}/bin:${PATH}" // Add Cargo binaries to PATH
@@ -15,9 +17,9 @@ pipeline {
                     sh '''
                                         if ! [ -x "$(command -v rustc)" ]; then
                                             echo "Installing Rustup and Rust..."
-                                            wget https://codeload.github.com/rust-lang/rust/tar.gz/refs/tags/1.83.0
-                                            ls ${WORKSPACE}/1.83.0
-                                            export PATH="${WORKSPACE}/.cargo/bin:$PATH"
+                                            wget https://codeload.github.com/rust-lang/rust/tar.gz/refs/tags/${CARGO_VERSION}
+                                            ls ${HOME}/${CARGO_VERSION}
+                                            export PATH="${HOME}/${CARGO_VERSION}/bin:$PATH"
                                         else
                                             echo "Rust is already installed"
                                         fi
