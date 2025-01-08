@@ -1,8 +1,6 @@
 pipeline {
     agent {
-        docker {
-          image 'rust:latest'
-        }
+        label 'agent'
       }
     stages {
 
