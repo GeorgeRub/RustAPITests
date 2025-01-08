@@ -36,7 +36,7 @@ pipeline {
         stage('Build') {
             steps {
             script{
-                sh '$HOME/.cargo/bin/cargo build --release' // Build the Rust application in release mode
+                sh 'cargo build --release' // Build the Rust application in release mode
             }
 
             }
