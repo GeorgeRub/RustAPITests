@@ -5,6 +5,7 @@ pipeline {
     environment {
         CARGO_HOME = "${WORKSPACE}/.cargo" // Set up Cargo home
         RUSTUP_HOME = "${WORKSPACE}/.rustup" // Set up Rustup home
+        PATH = "${CARGO_HOME}/bin:${PATH}" // Add Cargo binaries to PATH
     }
     stages {
         stage('Setup') {
@@ -15,10 +16,12 @@ pipeline {
                     if ! [ -x "$(command -v rustup)" ]; then
                         echo "Installing Rustup..."
                         curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-                        export PATH="$HOME/.cargo/bin:$PATH"
+                        export PATH="${WORKSPACE}/.cargo/bin:$PATH"
                     else
                         echo "Rustup already installed"
                     fi
+                    rustc --version
+                    cargo --version
                     '''
                 }
             }
