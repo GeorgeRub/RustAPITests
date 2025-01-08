@@ -1,11 +1,16 @@
 pipeline {
-    agent any
-    stages {
-        stage('Example') {
-            steps {
-                echo 'Hello World'
-                cargo version
-            }
+    agent {
+        docker {
+          image 'rust:latest'
         }
-    }
+      }
+    stages {
+
+        stage('Build') {
+          steps {
+            sh "cargo build --release"
+          }
+        }
+
+      }
 }
