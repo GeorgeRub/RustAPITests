@@ -34,48 +34,6 @@ pipeline {
                 sh 'cargo build --release' // Build the Rust application in release mode
             }
         }
-//         stage('Test') {
-//             steps {
-//                 sh 'cargo test' // Run tests for the application
-//             }
-//         }
-//         stage('Package') {
-//             steps {
-//                 script {
-//                     // Package the built binary
-//                     def appName = "my_rust_app"
-//                     def outputDir = "${WORKSPACE}/dist"
-//                     sh """
-//                     mkdir -p ${outputDir}
-//                     cp target/release/${appName} ${outputDir}/
-//                     echo "Packaged ${appName} into ${outputDir}"
-//                     """
-//                 }
-//             }
-//         }
-//     }
-//     post {
-//         always {
-//             archiveArtifacts artifacts: 'dist/**', fingerprint: true // Archive the output files
-//             cleanWs() // Clean up the workspace
-//         }
-//     }
+    }
 }
 
-
-
-// pipeline {
-//     agent {
-//         label 'agent1'
-//       }
-//     stages {
-//
-//         stage('Build') {
-//           steps {
-//           sh "cargo version"
-//             sh "cargo build --release"
-//           }
-//
-//         }
-//       }
-// }
