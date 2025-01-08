@@ -13,16 +13,16 @@ pipeline {
                 script {
                     // Ensure Rust is installed on the agent
                     sh '''
-                    if ! [ -x "$(command -v rustup)" ]; then
-                        echo "Installing Rustup..."
-                        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-                        export PATH="${WORKSPACE}/.cargo/bin:$PATH"
-                    else
-                        echo "Rustup already installed"
-                    fi
-                    rustc --version
-                    cargo --version
-                    '''
+                                        if ! [ -x "$(command -v rustc)" ]; then
+                                            echo "Installing Rustup and Rust..."
+                                            curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+                                            export PATH="${WORKSPACE}/.cargo/bin:$PATH"
+                                        else
+                                            echo "Rust is already installed"
+                                        fi
+                                        rustc --version
+                                        cargo --version
+                                        '''
                 }
             }
         }
