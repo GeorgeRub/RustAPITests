@@ -11,7 +11,6 @@ pipeline {
           sh "cargo version"
             sh "cargo build --release"
           }
-        }
 
       }
 }
