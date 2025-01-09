@@ -9,6 +9,7 @@ pipeline {
         }
         stages {
 
+
             stage('Setup Rust') {
                 steps {
                                 script {
