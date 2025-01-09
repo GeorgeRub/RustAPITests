@@ -22,7 +22,7 @@ pipeline {
 #                                     echo "Docker not found, installing..."
 #                                    curl -fsSL https://get.docker.com | sh
 #                                 fi
-                                service docker start
+                                sudo service docker start
                                 docker --version
                                 docker pull hello-world
                             '''
