@@ -21,7 +21,14 @@ pipeline {
                                 # Check if Docker service is active
                                 if ! systemctl is-active --quiet docker; then
                                   echo "Docker daemon is not running."
-                                  exit 1
+                                  sudo service docker start
+
+                                  while (! systemctl is-active --quiet docker); do
+                                    # Docker takes a few seconds to initialize
+                                    echo "Waiting for Docker to launch..."
+                                    sleep 1
+                                  done
+
                                 else
                                   echo "Docker daemon is running."
                                 fi
