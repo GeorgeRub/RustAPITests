@@ -10,22 +10,7 @@ pipeline {
         PATH = "${CARGO_HOME}/bin:${PATH}" // Add Cargo binaries to PATH
     }
      stages {
-        stage('Checking Docker --->>>') {
-            steps {
-                    script {
-                            // Ensure Rust is installed and available in the PATH
-                            sh '''
-                                echo "Checking for Docker installation..."
-                                if ! [ -x "$(command -v docker)" ]; then
-                                    echo "Docker not found, installing..."
 
-                                fi
-                                docker pull hello-world
-                            '''
-                            }
-            }
-
-        }
         stage('Setup Rust') {
             steps {
                     script {
@@ -53,6 +38,33 @@ pipeline {
             steps {
                 script{
                     sh 'cargo build --release' // Build the Rust application in release mode
+                }
+
+            }
+        }
+        stage('Checking Docker') {
+            steps {
+                    script {
+                            // Ensure Rust is installed and available in the PATH
+                            sh '''
+                                echo "Checking for Docker installation..."
+                                if ! [ -x "$(command -v docker)" ]; then
+                                    echo "Docker not found, installing..."
+
+                                fi
+                                docker version
+                                groupadd docker
+                                usermod -aG docker jenkins
+                                newgrp docker
+                            '''
+                            }
+            }
+
+        }
+        stage('Create Docker image') {
+            steps {
+                script{
+                    sh 'echo "Creating a docker image..."' /
                 }
 
             }
