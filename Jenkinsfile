@@ -13,7 +13,6 @@ pipeline {
         stage('Setup Rust') {
             steps {
                     script {
-                            // Ensure Rust is installed and available in the PATH
                             sh '''
                                 echo "Checking for Rust installation..."
                                 if ! [ -x "$(command -v rustc)" ]; then
@@ -43,4 +42,3 @@ pipeline {
         }
     }
 }
-
