@@ -18,10 +18,10 @@ pipeline {
                             sh '''
                                 echo "Checking for Docker installation..."
 
-//                                 if ! [ -x "$(command -v docker)" ]; then
-//                                     echo "Docker not found, installing..."
-//                                     curl -fsSL https://get.docker.com | sh
-//                                 fi
+#                                 if ! [ -x "$(command -v docker)" ]; then
+#                                     echo "Docker not found, installing..."
+#                                    curl -fsSL https://get.docker.com | sh
+#                                 fi
 
                                 docker --version
                                 docker pull hello-world
