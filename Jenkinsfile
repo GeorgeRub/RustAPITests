@@ -48,7 +48,7 @@ pipeline {
                             // Ensure Rust is installed and available in the PATH
                             sh '''
                                 echo "Checking for Docker installation..."
-                                chmod 666 /var/run/docker.sock
+//                                 chmod 666 /var/run/docker.sock
 //                                 if ! [ -x "$(command -v docker)" ]; then
 //                                     echo "Docker not found, installing..."
 //
