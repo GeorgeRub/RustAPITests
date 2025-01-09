@@ -10,9 +10,26 @@ pipeline {
         PATH = "${CARGO_HOME}/bin:${PATH}" // Add Cargo binaries to PATH
     }
      stages {
+        stage('Checking Docker') {
+            steps {
+                    script {
+                            // Ensure Rust is installed and available in the PATH
+                            sh '''
+                                echo "Checking for Docker installation..."
+                                if ! [ -x "$(command -v docker)" ]; then
+                                    echo "Docker not found, installing..."
+
+                                fi
+                                docker version
+                            '''
+                            }
+            }
+
+        }
         stage('Setup Rust') {
             steps {
                     script {
+                            // Ensure Rust is installed and available in the PATH
                             sh '''
                                 echo "Checking for Rust installation..."
                                 if ! [ -x "$(command -v rustc)" ]; then
@@ -42,3 +59,4 @@ pipeline {
         }
     }
 }
+
