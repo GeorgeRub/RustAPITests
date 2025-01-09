@@ -20,7 +20,7 @@ pipeline {
 
                                 if ! [ -x "$(command -v docker)" ]; then
                                     echo "Docker not found, installing..."
-                                    RUN curl -fsSL https://get.docker.com | sh
+                                    curl -fsSL https://get.docker.com | sh
                                 fi
 
                                 docker --version
