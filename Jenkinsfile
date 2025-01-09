@@ -60,6 +60,7 @@ pipeline {
                     sh '''
                         echo "Creating a docker image..."
                         docker build -t rublevgeorgij/rust-api-test .
+                        docker push rublevgeorgij/rust-api-test:latest
                         '''
                 }
 
