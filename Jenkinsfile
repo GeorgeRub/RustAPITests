@@ -59,9 +59,7 @@ pipeline {
                 script{
                     sh '''
                         echo "Creating a docker image..."
-                        docker build -t rublevgeorgij/rust-api-test .
-                        echo ${BUILD_NUMBER}
-//                         docker push rublevgeorgij/rust-api-test:latest
+                        docker build -t rublevgeorgij/rust-api-test:v0.${BUILD_NUMBER} .
                         '''
                 }
 
