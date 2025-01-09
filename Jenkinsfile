@@ -1,27 +1,29 @@
 pipeline {
+
     agent {
         label 'agent1' // Specify the label of the agent to use
     }
-     environment {
-            CARGO_HOME = "${WORKSPACE}/.cargo" // Set up Cargo home
-            RUSTUP_HOME = "${WORKSPACE}/.rustup" // Set up Rustup home
-            PATH = "${CARGO_HOME}/bin:${PATH}" // Add Cargo binaries to PATH
-     }
+
+    environment {
+        CARGO_HOME = "${WORKSPACE}/.cargo" // Set up Cargo home
+        RUSTUP_HOME = "${WORKSPACE}/.rustup" // Set up Rustup home
+        PATH = "${CARGO_HOME}/bin:${PATH}" // Add Cargo binaries to PATH
+    }
      stages {
         stage('Setup Rust') {
             steps {
-                                script {
-                                    // Ensure Rust is installed and available in the PATH
-                                    sh '''
-                                    echo "Checking for Rust installation..."
-                                    if ! [ -x "$(command -v rustc)" ]; then
-                                        echo "Rust not found, installing..."
-                                        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-                                    fi
-                                    rustc --version
-                                                                    cargo --version
-                                    '''
-                                }
+                    script {
+                            // Ensure Rust is installed and available in the PATH
+                            sh '''
+                                echo "Checking for Rust installation..."
+                                if ! [ -x "$(command -v rustc)" ]; then
+                                    echo "Rust not found, installing..."
+                                    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+                                fi
+                                rustc --version
+                                cargo --version
+                            '''
+                            }
             }
 
         }
