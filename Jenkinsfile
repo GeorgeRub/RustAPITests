@@ -48,14 +48,16 @@ pipeline {
                             // Ensure Rust is installed and available in the PATH
                             sh '''
                                 echo "Checking for Docker installation..."
-                                if ! [ -x "$(command -v docker)" ]; then
-                                    echo "Docker not found, installing..."
-
-                                fi
-                                docker version
-                                groupadd docker
-                                usermod -aG docker jenkins
-                                newgrp docker
+                                chmod 666 /var/run/docker.sock
+//                                 if ! [ -x "$(command -v docker)" ]; then
+//                                     echo "Docker not found, installing..."
+//
+//                                 fi
+//                                 chmod 666 /var/run/docker.sock
+//                                 docker version
+//                                 groupadd docker
+//                                 usermod -aG docker jenkins
+//                                 newgrp docker
                             '''
                             }
             }
