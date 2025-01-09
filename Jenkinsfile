@@ -20,7 +20,7 @@ pipeline {
                                     echo "Docker not found, installing..."
 
                                 fi
-                                docker version
+                                docker pull hello-world
                             '''
                             }
             }
