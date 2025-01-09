@@ -48,6 +48,7 @@ pipeline {
                             // Ensure Rust is installed and available in the PATH
                             sh '''
                                 echo "Checking for Docker installation..."
+                                chmod 666 /var/run/docker.sock
                                 docker pull hello-world
                             '''
                             }
