@@ -10,7 +10,7 @@ pipeline {
         PATH = "${CARGO_HOME}/bin:${PATH}" // Add Cargo binaries to PATH
     }
      stages {
-        stage('Checking Docker') {
+        stage('Checking Docker --->>>') {
             steps {
                     script {
                             // Ensure Rust is installed and available in the PATH
