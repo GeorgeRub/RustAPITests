@@ -2,6 +2,7 @@ mod delete_item_response;
 mod item_model;
 mod request_item_model;
 mod app_stage_model;
+mod app_stage_model_test;
 
 pub use delete_item_response::*;
 pub use item_model::*;
