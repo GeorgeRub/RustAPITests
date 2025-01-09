@@ -6,12 +6,10 @@ pipeline {
             CARGO_HOME = "${WORKSPACE}/.cargo" // Set up Cargo home
             RUSTUP_HOME = "${WORKSPACE}/.rustup" // Set up Rustup home
             PATH = "${CARGO_HOME}/bin:${PATH}" // Add Cargo binaries to PATH
-        }
-        stages {
-
-
-            stage('Setup Rust') {
-                steps {
+     }
+     stages {
+        stage('Setup Rust') {
+            steps {
                                 script {
                                     // Ensure Rust is installed and available in the PATH
                                     sh '''
@@ -24,9 +22,9 @@ pipeline {
                                                                     cargo --version
                                     '''
                                 }
-                            }
-
             }
+
+        }
 
         stage('Checkout Code') {
             steps {
@@ -35,9 +33,9 @@ pipeline {
         }
         stage('Build') {
             steps {
-            script{
-                sh 'cargo build --release' // Build the Rust application in release mode
-            }
+                script{
+                    sh 'cargo build --release' // Build the Rust application in release mode
+                }
 
             }
         }
