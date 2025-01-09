@@ -17,7 +17,7 @@ pipeline {
                             // Ensure Rust is installed and available in the PATH
                             sh '''
                                 echo "Checking for Docker installation..."
-                                docker version
+                                docker --version
                                 docker pull hello-world
                             '''
                             }
