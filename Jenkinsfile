@@ -68,6 +68,11 @@ pipeline {
                 checkout scm // Check out the code from the configured SCM (e.g., Git)
             }
         }
+        stage('Test') {
+                    steps {
+                        sh 'cargo test'
+                    }
+                }
         stage('Build') {
             steps {
                 script{
