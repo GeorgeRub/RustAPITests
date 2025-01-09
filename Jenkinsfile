@@ -67,6 +67,8 @@ pipeline {
                     sh '''
                         echo "Creating a docker image..."
                         docker build -t rublevgeorgij/rust-api-test:v0.${BUILD_NUMBER} .
+
+                        docker build -t rublevgeorgij/rust-api-test:latest .
                         '''
                 }
 
@@ -79,6 +81,7 @@ pipeline {
                         echo "Pushing a docker image..."
                         docker login -u rublevgeorgij -p dckr_pat_NCO665FWIQQFxEuX-GkmqhBinZo
                         docker push rublevgeorgij/rust-api-test:v0.${BUILD_NUMBER}
+                        docker push rublevgeorgij/rust-api-test:latest
 
                         '''
                 }
