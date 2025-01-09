@@ -59,7 +59,7 @@ pipeline {
                 script{
                     sh '''
                         echo "Creating a docker image..."
-                        docker build -t rust-api-test .
+                        docker build -t rublevgeorgij/rust-api-test .
                         '''
                 }
 
