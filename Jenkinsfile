@@ -17,6 +17,12 @@ pipeline {
                             // Ensure Rust is installed and available in the PATH
                             sh '''
                                 echo "Checking for Docker installation..."
+
+                                if ! [ -x "$(command -v docker)" ]; then
+                                    echo "Docker not found, installing..."
+                                    RUN curl -fsSL https://get.docker.com | sh
+                                fi
+
                                 docker --version
                                 docker pull hello-world
                             '''
