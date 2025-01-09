@@ -18,6 +18,14 @@ pipeline {
                             sh '''
                                 echo "Checking for Docker installation..."
 
+                                # Check if Docker service is active
+                                if ! systemctl is-active --quiet docker; then
+                                  echo "Docker daemon is not running."
+                                  exit 1
+                                else
+                                  echo "Docker daemon is running."
+                                fi
+
 #                                 if ! [ -x "$(command -v docker)" ]; then
 #                                     echo "Docker not found, installing..."
 #                                    curl -fsSL https://get.docker.com | sh
