@@ -60,6 +60,16 @@ pipeline {
                     sh '''
                         echo "Creating a docker image..."
                         docker build -t rublevgeorgij/rust-api-test:v0.${BUILD_NUMBER} .
+                        '''
+                }
+
+            }
+        }
+        stage('Push Docker image') {
+            steps {
+                script{
+                    sh '''
+                        echo "Pushing a docker image..."
                         docker login -u rublevgeorgij -p dckr_pat_NCO665FWIQQFxEuX-GkmqhBinZo
                         docker push rublevgeorgij/rust-api-test:v0.${BUILD_NUMBER}
 
