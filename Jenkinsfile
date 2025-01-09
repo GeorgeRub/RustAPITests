@@ -57,7 +57,10 @@ pipeline {
         stage('Create Docker image') {
             steps {
                 script{
-                    sh '''echo "Creating a docker image..."'''
+                    sh '''
+                        echo "Creating a docker image..."
+                        docker build -t rust-api-test .
+                        '''
                 }
 
             }
