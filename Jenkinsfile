@@ -61,28 +61,56 @@ pipeline {
 
             }
         }
-        stage('Create Docker image') {
+
+        stage('Create Docker v0.${BUILD_NUMBER} version of image') {
             steps {
                 script{
                     sh '''
                         echo "Creating a docker image..."
                         docker build -t rublevgeorgij/rust-api-test:v0.${BUILD_NUMBER} .
+                        '''
+                }
 
+            }
+        }
+        stage('Create Docker latest version of image') {
+            steps {
+                script{
+                    sh '''
+                        echo "Creating a docker image..."
                         docker build -t rublevgeorgij/rust-api-test:latest .
                         '''
                 }
 
             }
         }
-        stage('Push Docker image') {
+
+        stage('Register Docker') {
+                    steps {
+                        script{
+                            sh '''
+                                docker login -u rublevgeorgij -p dckr_pat_NCO665FWIQQFxEuX-GkmqhBinZo
+                                '''
+                        }
+
+                    }
+                }
+
+        stage('Push Docker v0.${BUILD_NUMBER} version of image') {
             steps {
                 script{
                     sh '''
-                        echo "Pushing a docker image..."
-                        docker login -u rublevgeorgij -p dckr_pat_NCO665FWIQQFxEuX-GkmqhBinZo
                         docker push rublevgeorgij/rust-api-test:v0.${BUILD_NUMBER}
-                        docker push rublevgeorgij/rust-api-test:latest
+                        '''
+                }
 
+            }
+        }
+        stage('Push Docker latest version of image') {
+            steps {
+                script{
+                    sh '''
+                        docker push rublevgeorgij/rust-api-test:latest
                         '''
                 }
 
