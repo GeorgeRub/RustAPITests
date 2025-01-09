@@ -62,7 +62,7 @@ pipeline {
             }
         }
 
-        stage('Create Docker v0.${BUILD_NUMBER} version of image') {
+        stage('Create Docker version of image') {
             steps {
                 script{
                     sh '''
@@ -96,7 +96,7 @@ pipeline {
                     }
                 }
 
-        stage('Push Docker v0.${BUILD_NUMBER} version of image') {
+        stage('Push Docker version of image') {
             steps {
                 script{
                     sh '''
