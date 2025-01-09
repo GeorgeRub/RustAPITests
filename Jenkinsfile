@@ -11,6 +11,18 @@ pipeline {
     }
      stages {
 
+        stage('Checking Docker') {
+            steps {
+                    script {
+                            // Ensure Rust is installed and available in the PATH
+                            sh '''
+                                echo "Checking for Docker installation..."
+                                docker pull hello-world
+                            '''
+                            }
+            }
+
+        }
         stage('Setup Rust') {
             steps {
                     script {
@@ -41,18 +53,6 @@ pipeline {
                 }
 
             }
-        }
-        stage('Checking Docker') {
-            steps {
-                    script {
-                            // Ensure Rust is installed and available in the PATH
-                            sh '''
-                                echo "Checking for Docker installation..."
-                                docker pull hello-world
-                            '''
-                            }
-            }
-
         }
         stage('Create Docker image') {
             steps {
