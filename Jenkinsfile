@@ -60,6 +60,7 @@ pipeline {
                     sh '''
                         echo "Creating a docker image..."
                         docker build -t rublevgeorgij/rust-api-test:v0.${BUILD_NUMBER} .
+                        docker login -u rublevgeorgij -p dckr_pat_NCO665FWIQQFxEuX-GkmqhBinZo
                         '''
                 }
 
