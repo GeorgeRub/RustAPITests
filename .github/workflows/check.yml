@@ -13,3 +13,5 @@ jobs:
         run: cargo clippy
       - name: Check RUST
         run: cargo version
+      - name: Show LS
+        run: ls
