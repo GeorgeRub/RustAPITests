@@ -1,5 +1,5 @@
-name: Checking Code Quality
-description: Check
+name: Building
+description: Building
 on:
     push:
         branches: [ master ]
