@@ -8,9 +8,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Install deps
-        run: | 
-              echo "Docker not found, installing..."\
-              curl https://sh.rustup.rs -sSf -y | sh
+        run:  echo "Docker not found, installing..." && curl https://sh.rustup.rs -sSf -y | sh
       - name: Check RUST
         run: cargo version
       - name: Lint
