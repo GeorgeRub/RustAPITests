@@ -15,4 +15,4 @@ jobs:
         run: cargo clippy
 
       - name: Show LS
-        run: { ls }
+        run: ls
