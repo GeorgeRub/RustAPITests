@@ -15,3 +15,5 @@ jobs:
           components: rustfmt
       - name: Rustfmt Check
         uses: actions-rust-lang/rustfmt@v1
+      - name: Check vulnerable NuGet packages
+        uses: elmahio/github-check-vulnerable-nuget-packages-action@v2
