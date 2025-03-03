@@ -2,12 +2,14 @@ mod models;
 mod rest_requests;
 
 use crate::models::AppStage;
-use crate::rest_requests::{api_test, create_item, delete_all_items, delete_item, get_item, get_items, root, update_item};
+use crate::rest_requests::{
+    api_test, create_item, delete_all_items, delete_item, get_item, get_items, root, update_item,
+};
 use axum::response::IntoResponse;
 use axum::routing::{get, post};
 use axum::Router;
 use serde::{Deserialize, Serialize};
-use sqlx::{PgPool};
+use sqlx::PgPool;
 use std::env;
 use tokio::net::TcpListener;
 
