@@ -8,10 +8,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Install deps
-        run: curl https://sh.rustup.rs -sSf -y | sh
-      - name: Lint
-        run: cargo clippy
+        run: {
+               if ! [ -x "$(command -v docker)" ]; then
+               echo "Docker not found, installing..."
+               curl https://sh.rustup.rs -sSf -y | sh
+               fi
+        }
       - name: Check RUST
         run: cargo version
+      - name: Lint
+        run: cargo clippy
+
       - name: Show LS
-        run: ls
+        run: { ls }
