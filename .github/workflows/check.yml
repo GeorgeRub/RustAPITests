@@ -9,3 +9,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Install deps
         run: curl https://sh.rustup.rs -sSf -y | sh
+      - name: Lint
+        run: cargo clippy
+      - name: Check RUST
+        run: cargo version
