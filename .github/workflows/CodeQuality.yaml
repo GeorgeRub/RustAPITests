@@ -9,8 +9,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions-rs/toolchain@v1
-      - name : Run tests
-        run: cargo test
+        with:
+          toolchain: stable
+      - uses: actions-rs/cargo@v1
+        with:
+          command: test
   formatting:
     name: cargo fmt
     runs-on: ubuntu-latest
