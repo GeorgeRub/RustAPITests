@@ -1,0 +1,11 @@
+name: Check
+on: push
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Install deps
+        run: apt install curl && curl https://sh.rustup.rs -sSf | sh
